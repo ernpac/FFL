@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TCFFLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Draft_Current">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CurrentPick" Type="int" />
+    <Property Name="CurrentTeamId" Type="int" />
+    <Property Name="CurrentRound" Type="int" />
+    <Property Name="CurrentOverall" Type="int" />
+  </EntityType>
+  <EntityType Name="DraftOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Year" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Drafts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="Place" Type="int" Nullable="false" />
+    <Property Name="Year" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="5" />
+    <Property Name="Number" Type="int" />
+    <Property Name="PlayerName" Type="varchar" MaxLength="200" />
+    <Property Name="Status" Type="varchar" MaxLength="5" />
+    <Property Name="Team" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PlayerTeamDrafts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+    <Property Name="Year" Type="float" Nullable="false" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Keeper" Type="bit" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="varchar" MaxLength="100" />
+    <Property Name="Owner" Type="varchar" MaxLength="100" />
+    <Property Name="OwnerEmail" Type="varchar" MaxLength="100" />
+    <Property Name="Logo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Testing">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sometext" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="TCFFLModelStoreContainer">
+    <EntitySet Name="Draft_Current" EntityType="Self.Draft_Current" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DraftOrders" EntityType="Self.DraftOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drafts" EntityType="Self.Drafts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlayerTeamDrafts" EntityType="Self.PlayerTeamDrafts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Testing" EntityType="Self.Testing" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

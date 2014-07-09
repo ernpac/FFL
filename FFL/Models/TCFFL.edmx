@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TCFFLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Draft_Current">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentPick" Type="int" />
+          <Property Name="CurrentTeamId" Type="int" />
+          <Property Name="CurrentRound" Type="int" />
+          <Property Name="CurrentOverall" Type="int" />
+        </EntityType>
+        <EntityType Name="DraftOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+          <Property Name="Year" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drafts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="Place" Type="int" Nullable="false" />
+          <Property Name="Year" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="5" />
+          <Property Name="Number" Type="int" />
+          <Property Name="PlayerName" Type="varchar" MaxLength="200" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="Team" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="PlayerTeamDrafts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="float" Nullable="false" />
+          <Property Name="Position" Type="int" />
+          <Property Name="Keeper" Type="bit" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" MaxLength="100" />
+          <Property Name="Owner" Type="varchar" MaxLength="100" />
+          <Property Name="OwnerEmail" Type="varchar" MaxLength="100" />
+          <Property Name="Logo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Testing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sometext" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="TCFFLModelStoreContainer">
+          <EntitySet Name="Draft_Current" EntityType="Self.Draft_Current" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DraftOrders" EntityType="Self.DraftOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drafts" EntityType="Self.Drafts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerTeamDrafts" EntityType="Self.PlayerTeamDrafts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Testing" EntityType="Self.Testing" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TCFFLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DraftOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Draft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="Place" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="PlayerName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Team" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PlayerTeamDraft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Double" Nullable="false" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="Keeper" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Owner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="TCFFLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DraftOrders" EntityType="Self.DraftOrder" />
+          <EntitySet Name="Drafts" EntityType="Self.Draft" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="PlayerTeamDrafts" EntityType="Self.PlayerTeamDraft" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Testings" EntityType="TCFFLModel.Testing" />
+          <EntitySet Name="Draft_Current" EntityType="TCFFLModel.Draft_Current" />
+        </EntityContainer>
+        <EntityType Name="Testing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sometext" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Draft_Current">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentPick" Type="Int32" />
+          <Property Name="CurrentTeamId" Type="Int32" />
+          <Property Name="CurrentRound" Type="Int32" />
+          <Property Name="CurrentOverall" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TCFFLModelStoreContainer" CdmEntityContainer="TCFFLEntities">
+          <EntitySetMapping Name="DraftOrders">
+            <EntityTypeMapping TypeName="TCFFLModel.DraftOrder">
+              <MappingFragment StoreEntitySet="DraftOrders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drafts">
+            <EntityTypeMapping TypeName="TCFFLModel.Draft">
+              <MappingFragment StoreEntitySet="Drafts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="TCFFLModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerTeamDrafts">
+            <EntityTypeMapping TypeName="TCFFLModel.PlayerTeamDraft">
+              <MappingFragment StoreEntitySet="PlayerTeamDrafts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Keeper" ColumnName="Keeper" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="TCFFLModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Testings">
+            <EntityTypeMapping TypeName="TCFFLModel.Testing">
+              <MappingFragment StoreEntitySet="Testing">
+                <ScalarProperty Name="sometext" ColumnName="sometext" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Draft_Current">
+            <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
+              <MappingFragment StoreEntitySet="Draft_Current">
+                <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
+                <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
+                <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
+                <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿<h3>Draft Order for Year: {{ model.draftOrder[0].Year }}</h3>
+
+<div data-ng-repeat="m in model.draftOrder">
+    <form class="form-horizontal" role="form">
+        <div class="row form-group form-group-xs">
+            <div class="col-xs-1"><input type="text" data-ng-model="m.Position" class="form-control" /></div> <input type="hidden" value="{{ m.TeamId }}" /><div class=" pull-left">
+    <label class="control-label">{{ m.TeamName }}</label>
+</div>
+</div>
+        </form>
+</div><br />
+<input type="button" class="btn btn-large btn-default" data-ng-click="saveOrder()" value="Save" />
+<br /><br />
+<div class="container">
+    <div class="row">
+        <button class="btn btn-link" data-ng-click="showSnake(1)" data-ng-if="!snake">Show Full Snake Draft Order</button>
+        <button class="btn btn-link" data-ng-click="showSnake(0)" data-ng-if="snake">Hide Full Snake Draft Order</button>
+    </div>
+    <div class="row" data-ng-show="snake">
+        <div data-ng-repeat="n in [] | range: model.rounds">
+            <div class="col-md-3 pull-left">
+                <h4>Round {{ n }}</h4>
+                <ol>
+                    <li data-ng-if="n % 2" data-ng-repeat="m in model.draftOrder">{{ m.TeamName}}</li>
+                    <li data-ng-if="!(n % 2)" data-ng-repeat="m in model.draftOrder | orderBy:'Position':true">{{ m.TeamName}}</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>

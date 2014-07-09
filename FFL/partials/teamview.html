@@ -1,0 +1,10 @@
+﻿<h2>Teams</h2>
+
+<div>
+    <span class="draftDayTeam" data-ng-repeat="teem in model.teams">
+        <div class="draftDayTeamName">{{ teem.TeamName }}</div>
+        <div data-ng-repeat="play in teem.Players">
+            {{ play.Position }} -- {{ play.PlayerName }}
+        </div>
+    </span>
+</div>

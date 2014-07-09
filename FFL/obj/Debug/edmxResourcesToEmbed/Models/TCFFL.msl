@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TCFFLModelStoreContainer" CdmEntityContainer="TCFFLEntities">
+    <EntitySetMapping Name="DraftOrders">
+      <EntityTypeMapping TypeName="TCFFLModel.DraftOrder">
+        <MappingFragment StoreEntitySet="DraftOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drafts">
+      <EntityTypeMapping TypeName="TCFFLModel.Draft">
+        <MappingFragment StoreEntitySet="Drafts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="TCFFLModel.Player">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerTeamDrafts">
+      <EntityTypeMapping TypeName="TCFFLModel.PlayerTeamDraft">
+        <MappingFragment StoreEntitySet="PlayerTeamDrafts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Keeper" ColumnName="Keeper" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="TCFFLModel.Team">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Testings">
+      <EntityTypeMapping TypeName="TCFFLModel.Testing">
+        <MappingFragment StoreEntitySet="Testing">
+          <ScalarProperty Name="sometext" ColumnName="sometext" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Draft_Current">
+      <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
+        <MappingFragment StoreEntitySet="Draft_Current">
+          <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
+          <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
+          <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
+          <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

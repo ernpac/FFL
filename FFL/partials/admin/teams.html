@@ -1,0 +1,32 @@
+﻿<h5>Team Maintenance</h5>
+<div class="span12">
+<table class="k-widget k-grid table table-striped"  style="width:960px;">
+    <tr class="k-header">
+        <th>Team</th>
+        <th>Owner</th>
+        <th>Email</th>
+        <th>Logo</th>
+        <th></th>
+    </tr>
+    <tr data-ng-repeat="team in teams">
+        <td><span data-ng-hide="editing">{{team.TeamName}}</span><input data-ng-show="editing" data-ng-model="team.TeamName" class="k-textbox" /></td>
+        <td><span data-ng-hide="editing">{{team.Owner}}</span><input data-ng-show="editing" data-ng-model="team.Owner" class="k-textbox" /></td>
+        <td><span data-ng-hide="editing">{{team.OwnerEmail}}</span><input data-ng-show="editing" data-ng-model="team.OwnerEmail" class="k-textbox" /></td>
+        <td><span data-ng-hide="editing">{{team.Logo}}</span><input data-ng-show="editing" data-ng-model="team.Logo" class="k-textbox" /></td>
+        <td><a href data-ng-click="editing=true" data-ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span></a> <a href data-ng-click="editing=false; updateTeam(team)" data-ng-show="editing"><span class="glyphicon glyphicon-ok"></span></a> <a href data-ng-click="delMe(team.Id)"><span class="glyphicon glyphicon-trash"></span></a></td>
+    </tr>
+</table>
+    <br />
+    <a href data-ng-click="adding=true;"><span class="icon-plus"></span> Add Team</a><br /><br />  
+    <div data-ng-show="adding">
+        <table class="k-widget k-popup" style="float:left;">
+            <tr>
+                <td><input data-ng-model="team.TeamName" class="k-textbox" placeholder="Team Name" /></td>
+                <td><input data-ng-model="team.Owner" class="k-textbox" placeholder="Owner" /></td>
+                <td><input data-ng-model="team.OwnerEmail" class="k-textbox" placeholder="Email" /></td>
+                <td><input data-ng-model="team.Logo" class="k-textbox" placeholder="Logo" /></td>
+                <td><button class="k-button" data-ng-click="addTeam(team)">Add</button></td>
+            </tr>
+        </table>
+            <div style="padding: 8px 3px 0 20px;">&nbsp;&nbsp;<a href data-ng-click="adding=false;"><span class="glyphicon glyphicon-remove"></span></a></div>
+    </div>

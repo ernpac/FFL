@@ -1,0 +1,139 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+th {
+    text-align:left;
+}
+#playerCards {
+    display: inline-block;
+}
+
+.playerCard{
+    width:250px;
+    margin: 3px 5px 2px 5px;
+    float:left;
+    border: solid 3px #666;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    /*padding: 2px;*/
+}
+.playerTeam{
+    font-family: Calibri;
+    font-size: 20pt;
+    font-weight: bold;
+    width: 70px;
+    background-color:#fff;
+    color: #333;
+    float:left;
+    padding: 20px 3px 29px 2px;
+    text-align:center;
+    vertical-align: middle;
+    border-right: solid 3px #666;
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-radius-topleft: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-radius-bottomleft: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.playerInfo{
+    width: 185px;
+    height: 90px;
+    margin-left:60px;
+    background-color:#ccc;
+    /*border: solid 1px #000; padding: 5px 2px 0 2px;*/
+    -moz-border-radius-topright: 10px;
+    -webkit-border-radius-topright: 10px;
+    border-radius: 10px;
+}
+.playerInfo .btn {
+    font-size:.75em;
+}
+.playerName{
+    background-color:#333;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #fff;
+    text-align:center;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-radius-topright: 5px;
+    border-top-right-radius: 8px;
+}
+.playerPosNum{
+    text-align:center;
+    vertical-align:middle;
+    font-weight:bold;
+    font-size: 10pt;
+    width:180px;
+    padding-top: 10px;
+
+}
+.playerChosen{
+    opacity:0.4;
+    color:red;
+}
+
+
+.draftdetails {
+    font-size: 1.4em;
+    padding-right:80px;
+    display: inline-block;
+}
+
+.draftDayPicks {
+    height: 400px;
+    overflow-y: scroll;
+   
+}
+
+.draftPick {
+    display: inline-block;
+    width:98%;
+}
+
+.draftPick .pick {
+    font-size: 2.0em;
+    width:10%;
+    display: inline-block;
+}
+
+.draftPick .draftteam {
+    font-size: 1.8em;
+    margin-left:30px;
+    min-width:400px;
+    display: inline-block;
+}
+
+.draftPick .draftplayer {
+    font-size: 1.8em;
+    margin-left:30px;
+    width:45%;
+    display: inline-block;
+}
+
+.draftPick .draftWhite {
+    background-color:#fff;
+    padding: 10px;
+}
+
+.draftPick .draftGrey {
+    background-color:#eee;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+
+.draftDayTeam {
+    display:inline-block; 
+    vertical-align:text-top;
+    margin-right:35px;
+    margin-bottom: 35px;
+    min-width:200px;
+    max-width:200px;
+}
+
+.draftDayTeamName {
+    font-size: 1.2em;
+}
