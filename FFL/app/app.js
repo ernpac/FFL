@@ -11,6 +11,8 @@
         otherwise({ redirectTo: '/' })
     }]);
 
+//this is a test comment to test git push
+
 app.filter('range', function () {
     return function (input, total) {
         total = parseInt(total);
