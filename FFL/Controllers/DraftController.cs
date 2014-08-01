@@ -65,9 +65,9 @@ namespace FFL.Controllers
                 Player = context.Players.Find(pId).PlayerName.ToString(),
                 Pick = pickNo
             };
-            string pick = cp.Team + ";" + cp.Player + ";" + cp.Pick;
+            //string pick = cp.Team + ";" + cp.Player + ";" + cp.Pick;
             var draftHub = GlobalHost.ConnectionManager.GetHubContext<DraftHub>();
-            draftHub.Clients.All.broadcastMessage(pick);
+            draftHub.Clients.All.broadcastMessage(cp);
             
         }
 

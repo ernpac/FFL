@@ -6,11 +6,11 @@
             </label>
         </div>
         <div class="col-xs-4">
-            <input type="text" data-ng-model="namefilter" class="form-control input-sm" id="namefilter" />
+            <input type="text" data-ng-model="ctrl.namefilter" class="form-control input-sm" id="namefilter" />
         </div>
         <div class="col-xs-1"><label class="control-label">Pos:</label></div>
         <div class="col-xs-2">
-            <select id="ddlPosition" data-ng-model="selectedItem" data-ng-change="selectPos()" class="form-control input-sm">
+            <select id="ddlPosition" data-ng-model="ctrl.selectedItem" data-ng-change="ctrl.selectPos()" class="form-control input-sm">
                 <option value="QB">QB</option>
                 <option value="RB">RB</option>
                 <option value="WR">WR</option>
@@ -31,7 +31,7 @@
                     <th>Team</th>
                 </tr>
             </thead>
-            <tr data-ng-repeat="player in players | filter: namefilter | limitTo: itemsLimit()" data-ng-show="player">
+            <tr data-ng-repeat="player in ctrl.players | filter: namefilter | limitTo: ctrl.itemsLimit()" data-ng-show="player">
                 <td>{{player.Position}}</td>
                 <td>{{player.PlayerName}}</td>
                 <td>{{player.Status}}</td>
@@ -40,7 +40,7 @@
             </tr>
             <tr style="text-align:center;" data-ng-show="more">
                 <td colspan="5">
-                    <div style="cursor:default;vertical-align:middle;" data-ng-click="showMore()">Show More <span class="caret"></span></div>
+                    <div style="cursor:default;vertical-align:middle;" data-ng-click="ctrl.showMore()">Show More <span class="caret"></span></div>
                 </td>
             </tr>
         </table>

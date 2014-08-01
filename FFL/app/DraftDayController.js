@@ -111,4 +111,6 @@
     $scope.selectPos = function () {
         $scope.loadPlayers();
     }
+
+    
 });

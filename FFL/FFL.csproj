@@ -198,9 +198,11 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers.js" />
+    <Content Include="app\directives.js" />
     <Content Include="app\DraftDayController.js" />
     <Content Include="app\DraftDayTeamsController.js" />
     <Content Include="app\services.js" />
+    <Content Include="app\signalRDraftSvc.js" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\Flat\editor.png" />
     <Content Include="Content\Flat\imagebrowser.png" />

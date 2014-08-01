@@ -8,12 +8,12 @@
         <th>Logo</th>
         <th></th>
     </tr>
-    <tr data-ng-repeat="team in teams">
+    <tr data-ng-repeat="team in ctrl.teams">
         <td><span data-ng-hide="editing">{{team.TeamName}}</span><input data-ng-show="editing" data-ng-model="team.TeamName" class="k-textbox" /></td>
         <td><span data-ng-hide="editing">{{team.Owner}}</span><input data-ng-show="editing" data-ng-model="team.Owner" class="k-textbox" /></td>
         <td><span data-ng-hide="editing">{{team.OwnerEmail}}</span><input data-ng-show="editing" data-ng-model="team.OwnerEmail" class="k-textbox" /></td>
         <td><span data-ng-hide="editing">{{team.Logo}}</span><input data-ng-show="editing" data-ng-model="team.Logo" class="k-textbox" /></td>
-        <td><a href data-ng-click="editing=true" data-ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span></a> <a href data-ng-click="editing=false; updateTeam(team)" data-ng-show="editing"><span class="glyphicon glyphicon-ok"></span></a> <a href data-ng-click="delMe(team.Id)"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td><a href data-ng-click="editing=true" data-ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span></a> <a href data-ng-click="editing=false; ctrl.updateTeam(team)" data-ng-show="editing"><span class="glyphicon glyphicon-ok"></span></a> <a href data-ng-click="ctrl.delMe(team.Id)"><span class="glyphicon glyphicon-trash"></span></a></td>
     </tr>
 </table>
     <br />
@@ -25,8 +25,9 @@
                 <td><input data-ng-model="team.Owner" class="k-textbox" placeholder="Owner" /></td>
                 <td><input data-ng-model="team.OwnerEmail" class="k-textbox" placeholder="Email" /></td>
                 <td><input data-ng-model="team.Logo" class="k-textbox" placeholder="Logo" /></td>
-                <td><button class="k-button" data-ng-click="addTeam(team)">Add</button></td>
+                <td><button class="k-button" data-ng-click="ctrl.addTeam(team)">Add</button></td>
             </tr>
         </table>
-            <div style="padding: 8px 3px 0 20px;">&nbsp;&nbsp;<a href data-ng-click="adding=false;"><span class="glyphicon glyphicon-remove"></span></a></div>
+            <div style="padding: 8px 3px 0 20px;">&nbsp;&nbsp;<a href data-ng-click="ctrl.adding=false;"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
+</div>

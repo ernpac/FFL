@@ -1,64 +1,72 @@
-﻿app.controller('MainCTRL', function($scope) {
-    $scope.title = 'TCFFL Draft Home';
-    $scope.activate = activate;
+﻿var MainCTRL = function () {
+    var _this = this;
 
-    function activate() {
+    _this.title = 'TCFFL Draft Home';
+};
+app.controller('MainCTRL', MainCTRL);
 
-    }
-});
-
-app.controller('DraftDayClientController', function ($scope, $http, $routeParams) {
+var DraftDayClientController = function ($http, $scope, signalRDraftSvc, $rootScope) {
+    var _this = this;
     $http.get('/api/Draft/getDraftResults')
     .then(function (data) {
-        $scope.currentResults = data.data;
+        _this.currentResults = data.data;
     }, function (ex) {
     });
-});
 
-app.controller('PlayerListCTRL', function ($scope, $http, $routeParams, dataService) {
-    $scope.title = 'Player Data';
-    $scope.positions = [{ 'position': 'QB' }, { 'position': 'RB' }, { 'position': 'WR' }, { 'position': 'TE' }, { 'position': 'DEF' }, { 'position': 'All' }];
-    $scope.$apply();
-    $scope.selectedItem = 'QB';
+    signalRDraftSvc.initialize();
 
-    $scope.setInitialData = function () {
+    $scope.$parent.$on('updateBoard', function (e, player) {
+        $scope.$apply(function () {
+            _this.currentResults.unshift(player);
+        });
+    });
+};
+app.controller('DraftDayClientController', DraftDayClientController);
+
+var PlayerListCTRL = function (dataService) {
+    var _this = this;
+    _this.title = 'Player Data';
+    _this.positions = [{ 'position': 'QB' }, { 'position': 'RB' }, { 'position': 'WR' }, { 'position': 'TE' }, { 'position': 'DEF' }, { 'position': 'All' }];
+    _this.selectedItem = 'QB';
+
+    _this.setInitialData = function () {
         setTimeout(function () {
             dataService
-                .getPlayersbyPOS($scope.selectedItem)
+                .getPlayersbyPOS(_this.selectedItem)
                 .success(function (data) {
-                    $scope.players = data;
-                    $scope.count = data.length;
-                    $scope.more = $scope.hasMore();
+                    _this.players = data;
+                    _this.count = data.length;
+                    _this.more = _this.hasMore();
                 })
         }, 100);
 
     }
-    $scope.per_page = 20;
-    $scope.page = 1;
-    $scope.more = true;
-    $scope.setInitialData();
+    _this.per_page = 20;
+    _this.page = 1;
+    _this.more = true;
+    _this.setInitialData();
 
-    $scope.itemsLimit = function () {
-        return $scope.page * $scope.per_page;
+    _this.itemsLimit = function () {
+        return _this.page * _this.per_page;
     };
 
-    $scope.hasMore = function () {
-        return $scope.page < ($scope.players.length / $scope.per_page);
+    _this.hasMore = function () {
+        return _this.page < (_this.players.length / _this.per_page);
     };
 
-    $scope.showMore = function () {
-        $scope.page = $scope.page + 1;
-        $scope.more = $scope.hasMore();
+    _this.showMore = function () {
+        _this.page = _this.page + 1;
+        _this.more = _this.hasMore();
     }
 
-    $scope.selectPos = function () {
-        if ($scope.selectedItem != 'All') {
+    _this.selectPos = function () {
+        if (_this.selectedItem != 'All') {
             setTimeout(function () {
                 dataService
-                .getPlayersbyPOS($scope.selectedItem)
+                .getPlayersbyPOS(_this.selectedItem)
                 .success(function (data) {
-                    $scope.players = data;
-                    $scope.count = data.length;
+                    _this.players = data;
+                    _this.count = data.length;
                 })
             }, 100);
         } else {
@@ -66,49 +74,51 @@ app.controller('PlayerListCTRL', function ($scope, $http, $routeParams, dataServ
                 dataService
                     .getPlayers()
                     .success(function (data) {
-                        $scope.players = data;
-                        $scope.count = data.length;
+                        _this.players = data;
+                        _this.count = data.length;
                     })
             }, 100);
         }
     }
-});
+};
+app.controller('PlayerListCTRL', PlayerListCTRL);
 
-app.controller('TeamDataCTRL', function ($scope, $http, dataService) {
-    $scope.selected = "";
-    $scope.editing = false;
-    $scope.adding = false;
+var TeamDataCTRL = function (dataService) {
+    var _this = this;
+    _this.editing = false;
+    _this.adding = false;
     setTimeout(function () {
         dataService
             .getTeams()
             .success(function (data) {
-                $scope.teams = data;
+                _this.teams = data;
             })
     });
 
-    $scope.updateTeam = function (team) {
+    _this.updateTeam = function (team) {
         setTimeout(function () {
             dataService
                 .updateTeam(team)
                 .success(function () {
-                    $scope.editing = false;
+                    _this.editing = false;
                     toastr.success('Team updated.');
                 })
         })
     }
-    $scope.addTeam = function (team) {
+    _this.addTeam = function (team) {
         setTimeout(function () {
             dataService
                 .addTeam(team)
                 .success(function () {
-                    $scope.adding = false;
-                    $scope.teams.push(team);
-                    $scope.team = {};
+                    _this.adding = false;
+                    _this.teams.push(team);
+                    _this.team = {};
                     toastr.success(team.TeamName + ' successfully added.')
                 })
         });
     }
-});
+};
+app.controller('TeamDataCTRL', TeamDataCTRL);
 
 app.controller('DraftCTRL', function ($scope, $http, $routeParams, $filter, dataService) {
     $scope.model = [];

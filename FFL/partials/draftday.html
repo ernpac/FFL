@@ -1,7 +1,7 @@
 ﻿<h3>Draft Board</h3>
 <div class="container">
     <div class="draftDayPicks">
-        <div class="draftPick" id="results" data-ng-repeat="c in currentResults">
+        <div class="draftPick" id="results" data-ng-repeat="c in ctrl.currentResults">
             <div data-ng-class="($index % 2) ? 'draftWhite' : 'draftGrey'">
                 <span class="pick">{{ c.Pick }}</span><span class="draftteam">{{ c.Team }}</span><span class="draftplayer">{{ c.Player }}</span>
             </div>
@@ -9,33 +9,33 @@
     </div>
 
 </div>
-<script src="/Scripts/jquery.signalR-2.1.0.min.js"></script>
-<script src="/signalr/hubs"></script>
+
 <script>
-    $(function () {
-        var txt = $.connection.draftHub;
-        var swtch = 0;
-        txt.client.broadcastMessage = function (t) {
-            var encodedtxt = $('<div />').text(t).html();
+    
+    //$(function () {
+    //    var txt = $.connection.draftHub;
+    //    var swtch = 0;
+    //    txt.client.broadcastMessage = function (t) {
+    //        var encodedtxt = $('<div />').text(t).html();
 
-            var mytext = encodedtxt.split(';');
-            var styl = '';
-            if (swtch == 0) {
-                styl = 'draftWhite';
-                swtch = 1;
-            } else {
-                styl = 'draftGrey';
-                swtch = 0;
-            }
-            $('#results').prepend('<div class="' + styl + '"><span class="pick">' + mytext[2] + '</span><span class="draftteam">' + mytext[0] + '</span><span class="draftplayer">' + mytext[1] + '</span></div>');
-        };
-        $('#message').focus();
+    //        var mytext = encodedtxt.split(';');
+    //        var styl = '';
+    //        if (swtch == 0) {
+    //            styl = 'draftWhite';
+    //            swtch = 1;
+    //        } else {
+    //            styl = 'draftGrey';
+    //            swtch = 0;
+    //        }
+    //        $('#results').prepend('<div class="' + styl + '"><span class="pick">' + mytext[2] + '</span><span class="draftteam">' + mytext[0] + '</span><span class="draftplayer">' + mytext[1] + '</span></div>');
+    //    };
+    //    $('#message').focus();
 
-        $.connection.hub.start().done(function () {
-            $('#sendmessage').click(function () {
-                txt.server.send($('#message').val());
-                $('#message').val('').focus();
-            });
-        });
-    });
+    //    $.connection.hub.start().done(function () {
+    //        $('#sendmessage').click(function () {
+    //            txt.server.send($('#message').val());
+    //            $('#message').val('').focus();
+    //        });
+    //    });
+    //});
 </script>
