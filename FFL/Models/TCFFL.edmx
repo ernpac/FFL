@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TCFFLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TCFFLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Draft_Current">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,10 +82,21 @@
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Testing" EntityType="Self.Testing" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TCFFLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Draft_Current">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentPick" Type="Int32" />
+          <Property Name="CurrentTeamId" Type="Int32" />
+          <Property Name="CurrentRound" Type="Int32" />
+          <Property Name="CurrentOverall" Type="Int32" />
+        </EntityType>
         <EntityType Name="DraftOrder">
           <Key>
             <PropertyRef Name="Id" />
@@ -137,15 +148,6 @@
           <Property Name="OwnerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Logo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="TCFFLEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DraftOrders" EntityType="Self.DraftOrder" />
-          <EntitySet Name="Drafts" EntityType="Self.Draft" />
-          <EntitySet Name="Players" EntityType="Self.Player" />
-          <EntitySet Name="PlayerTeamDrafts" EntityType="Self.PlayerTeamDraft" />
-          <EntitySet Name="Teams" EntityType="Self.Team" />
-          <EntitySet Name="Testings" EntityType="TCFFLModel.Testing" />
-          <EntitySet Name="Draft_Current" EntityType="TCFFLModel.Draft_Current" />
-        </EntityContainer>
         <EntityType Name="Testing">
           <Key>
             <PropertyRef Name="id" />
@@ -153,22 +155,32 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sometext" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Draft_Current">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CurrentPick" Type="Int32" />
-          <Property Name="CurrentTeamId" Type="Int32" />
-          <Property Name="CurrentRound" Type="Int32" />
-          <Property Name="CurrentOverall" Type="Int32" />
-        </EntityType>
+        <EntityContainer Name="TCFFLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Draft_Current" EntityType="Self.Draft_Current" />
+          <EntitySet Name="DraftOrders" EntityType="Self.DraftOrder" />
+          <EntitySet Name="Drafts" EntityType="Self.Draft" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="PlayerTeamDrafts" EntityType="Self.PlayerTeamDraft" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Testings" EntityType="Self.Testing" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TCFFLModelStoreContainer" CdmEntityContainer="TCFFLEntities">
+          <EntitySetMapping Name="Draft_Current">
+            <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
+              <MappingFragment StoreEntitySet="Draft_Current">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
+                <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
+                <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
+                <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DraftOrders">
             <EntityTypeMapping TypeName="TCFFLModel.DraftOrder">
               <MappingFragment StoreEntitySet="DraftOrders">
@@ -228,19 +240,8 @@
           <EntitySetMapping Name="Testings">
             <EntityTypeMapping TypeName="TCFFLModel.Testing">
               <MappingFragment StoreEntitySet="Testing">
-                <ScalarProperty Name="sometext" ColumnName="sometext" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Draft_Current">
-            <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
-              <MappingFragment StoreEntitySet="Draft_Current">
-                <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
-                <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
-                <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
-                <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="sometext" ColumnName="sometext" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

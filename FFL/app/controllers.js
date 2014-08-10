@@ -13,13 +13,13 @@ var DraftDayClientController = function ($http, $scope, signalRDraftSvc, $rootSc
     }, function (ex) {
     });
 
-    signalRDraftSvc.initialize();
+    //signalRDraftSvc.initialize();
 
-    $scope.$parent.$on('updateBoard', function (e, player) {
-        $scope.$apply(function () {
-            _this.currentResults.unshift(player);
-        });
-    });
+    //$scope.$parent.$on('updateBoard', function (e, player) {
+    //    $scope.$apply(function () {
+    //        _this.currentResults.unshift(player);
+    //    });
+    //});
 };
 app.controller('DraftDayClientController', DraftDayClientController);
 

@@ -65,26 +65,46 @@ namespace FFL.Controllers
                 Player = context.Players.Find(pId).PlayerName.ToString(),
                 Pick = pickNo
             };
-            //string pick = cp.Team + ";" + cp.Player + ";" + cp.Pick;
+            string pick = cp.Team + ";" + cp.Player + ";" + cp.Pick;
             var draftHub = GlobalHost.ConnectionManager.GetHubContext<DraftHub>();
-            draftHub.Clients.All.broadcastMessage(cp);
+            draftHub.Clients.All.broadcastMessage(pick);
             
         }
 
         public void updateDraftCurrents(Draft_Current current)
         {
-            var context = new TCFFLEntities();
-
-            Draft_Current curr = new Draft_Current()
+            using (TCFFLEntities db = new TCFFLEntities())
             {
-                CurrentTeamId = current.CurrentTeamId,
-                CurrentOverall = current.CurrentOverall,
-                CurrentPick = current.CurrentPick,
-                CurrentRound = current.CurrentRound
-            };
+                var currents = db.Draft_Current.FirstOrDefault();
 
-            context.Draft_Current.Add(curr);
-            context.SaveChanges();
+                if(currents == null)
+                {
+                    Draft_Current curr = new Draft_Current()
+                        {
+                            CurrentTeamId = current.CurrentTeamId,
+                            CurrentOverall = current.CurrentOverall,
+                            CurrentPick = current.CurrentPick,
+                            CurrentRound = current.CurrentRound
+                        };
+                    db.Draft_Current.Add(curr);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    currents.CurrentTeamId = current.CurrentTeamId;
+                    currents.CurrentRound = current.CurrentRound;
+                    currents.CurrentOverall = current.CurrentOverall;
+                    if(current.CurrentPick > 9)
+                    {
+                        currents.CurrentPick = 0;
+                    }
+                    else
+                    {
+                        currents.CurrentPick = current.CurrentPick;
+                    }
+                    db.SaveChanges();
+                }
+            }
         }
 
         public Draft_Current getCurrents()
@@ -92,6 +112,15 @@ namespace FFL.Controllers
             var context = new TCFFLEntities();
 
             var results = context.Draft_Current.OrderByDescending(c => c.Id).Select(c => c).FirstOrDefault();
+            if (results == null)
+            {
+                results = new Draft_Current()
+                {
+                    CurrentOverall = 0,
+                    CurrentPick = 0,
+                    CurrentRound = 1
+                };
+            }
             return results;
         }
 

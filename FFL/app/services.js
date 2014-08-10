@@ -52,7 +52,7 @@
                 getDraftInfo: function (year) {
                     return $http({
                         method: 'GET',
-                        url:'/api/Draft/GetDraftInfo?yr=' + year
+                        url: '/api/Draft/GetDraftInfo?yr=' + year
                     })
                 },
                 draftPlayer: function (teamid, playerid, position) {

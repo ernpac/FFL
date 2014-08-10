@@ -5,35 +5,42 @@
     }
 
     $scope.ct = 0;
+
 //get the current draft pick data
     dataService
         .getCurrents()
         .success(function (data) {
-            if (data.length != 0) {
+            if (data != null) {
                 if (data.CurrentPick < 9) {
-                    $scope.ct = data.CurrentPick + 1;
+                    //$scope.ct = data.CurrentPick;
                     $scope.currentRound = data.CurrentRound;
+                    $scope.currentTeamId = data.CurrentTeamId;
                 } else {
-                    $scope.ct = 0;
+                    //$scope.ct = 0;
                     $scope.currentRound = data.CurrentRound + 1;
                 }
                 $scope.overallCount = data.CurrentOverall + 1;
                 $scope.currentTeam = true;
             } else {
                 $scope.currentRound = 1;
-                $scope.ct = 0;
+                //$scope.ct = 0;
                 $scope.overallCount = 1;
-                $scope.currentTeam = 0;
+                $scope.currentTeam = false;
             }
-        });
-    
 
+        });
+    //alert($scope.ct)
     dataService
         .getDraftOrder(new Date().getFullYear())
         .success(function (data) {
-            $scope.draftOrder = data;
             if ($scope.currentTeam) {
-                $scope.OnTheClock = $scope.draftOrder[$scope.ct]
+                if ($scope.currentRound % 2 == 0) {
+                    $scope.draftOrder = data.slice().reverse();
+                    $scope.OnTheClock = $scope.draftOrder[$scope.ct]
+                } else {
+                    $scope.draftOrder = data;
+                    $scope.OnTheClock = $scope.draftOrder[$scope.ct]
+                }
             } else 
             {
                 $scope.OnTheClock = _.first($scope.draftOrder);
@@ -112,5 +119,9 @@
         $scope.loadPlayers();
     }
 
+    $scope.resetTeams = [{ Id: 0, Nam: 'Hakan' }, { Id: 1, Nam: 'Boston' }, { Id: 2, Nam: 'Tweeder' }, { Id: 3, Nam: 'Scoregasms' }, { Id: 4, Nam: 'Knoxville' }, { Id: 5, Nam: 'Thorogood' }, { Id: 6, Nam: 'Linesteppers' }, { Id: 7, Nam: 'Southport' }, { Id: 8, Nam: 'Nightstalkers' }, { Id: 9, Nam: 'Desper' }]
     
+    $scope.setTeam = function () {
+        $scope.ct = $scope.selectedResetTeam.Id;
+    }
 });

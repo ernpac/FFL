@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TCFFLModelStoreContainer" CdmEntityContainer="TCFFLEntities">
+    <EntitySetMapping Name="Draft_Current">
+      <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
+        <MappingFragment StoreEntitySet="Draft_Current">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
+          <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
+          <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
+          <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DraftOrders">
       <EntityTypeMapping TypeName="TCFFLModel.DraftOrder">
         <MappingFragment StoreEntitySet="DraftOrders">
@@ -60,19 +71,8 @@
     <EntitySetMapping Name="Testings">
       <EntityTypeMapping TypeName="TCFFLModel.Testing">
         <MappingFragment StoreEntitySet="Testing">
-          <ScalarProperty Name="sometext" ColumnName="sometext" />
           <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Draft_Current">
-      <EntityTypeMapping TypeName="TCFFLModel.Draft_Current">
-        <MappingFragment StoreEntitySet="Draft_Current">
-          <ScalarProperty Name="CurrentOverall" ColumnName="CurrentOverall" />
-          <ScalarProperty Name="CurrentRound" ColumnName="CurrentRound" />
-          <ScalarProperty Name="CurrentTeamId" ColumnName="CurrentTeamId" />
-          <ScalarProperty Name="CurrentPick" ColumnName="CurrentPick" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="sometext" ColumnName="sometext" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

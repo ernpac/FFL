@@ -25,12 +25,12 @@ namespace FFL.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Draft_Current> Draft_Current { get; set; }
         public DbSet<DraftOrder> DraftOrders { get; set; }
         public DbSet<Draft> Drafts { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerTeamDraft> PlayerTeamDrafts { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Testing> Testings { get; set; }
-        public DbSet<Draft_Current> Draft_Current { get; set; }
     }
 }

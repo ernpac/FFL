@@ -53,8 +53,8 @@ th {
 }
 .playerName{
     background-color:#333;
-    font-size: 11pt;
-    font-weight: bold;
+    font-size: .85em;
+    font-weight: 400;
     color: #fff;
     text-align:center;
     -moz-border-radius-topright: 5px;
